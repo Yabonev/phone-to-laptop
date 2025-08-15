@@ -1,0 +1,4 @@
+> @agent-python-test-auditor Check the tests in this repository and evaluate them based on your core principles, give me an analysis and overview, are they good, are they bad, what's good, what's bad, how can we make them better, be extreemly detailed. 
+
+> Give agent this specific feedback and all the context you can and make him reimplement the test, he has complete freedom to change, delete, update, create new tests, folders, and so on. before you proceed create a github repo and commit everything
+

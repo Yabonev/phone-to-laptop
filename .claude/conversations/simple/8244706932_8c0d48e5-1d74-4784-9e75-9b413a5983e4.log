@@ -1,0 +1,48 @@
+> /init 
+
+> Explain how it works currently, I am most interested in the language, is there auto language setting or what?
+
+> something's wrong:# project12345
+
+Voice notes transcriptions:
+
+## 2025-08-15 23:34
+
+**Original:** Записна български язык.
+
+**English:** I recorded it on wix Oftentimes
+
+ --- this is not bulgarian, specifically in the word език, and the english translation is completely off
+
+> can you just check how to set it up correctly, before the refactoring it was working, you're currently working in a refactored version but there's no history
+
+> that audio is bad, ignore it, tell me what you need, I'll send more messages
+
+> it works now
+
+> Can you limit autodetect to english or bulgarian?
+
+> rather than that, if it is not english, just put it to bulgarian
+
+> alright, now I don't want to translate english to bulgarian, just translate bulgarian to english
+
+> ## 2025-08-15 23:51
+
+**Bulgarian:** Това е едно от записи в английския мангал.
+
+**English:** This is another recording in the English language.
+
+---there's translatino happening still when Ispeak english
+
+> ok, let's do this, remove auto detect, just give the ability to select english or bulgarian, by default be english, when offline, be english
+
+> Add logic to keep recordings for 7 days and delete after, also do a similar thing with the bot logs, after 1000 lines, start deleting the oldest logs
+
+> alright, can you check if the tests we have actually are meaningful? I want to have tests written in a way that any LLM can execute
+
+> why not write real python tests?
+
+> fix issues
+
+> aim for max coverage
+

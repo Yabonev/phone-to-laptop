@@ -1,0 +1,90 @@
+> hey
+
+> I want to setup some kind of connection from my phone to my laptop and specifically use that connection to use claude code, what are the possible solutions
+
+> I don't want to be able to work remotely, rather I'd like to create some kind of inbox and just sent it messages, create tasks, reminders and so on
+
+> diff between telegram and whatsapp?
+
+> Let's go with telegram, Before we start, I want you to extract from me the vision of how this would work, the underlying needs and so on, be an expert UX designer to understand the features Ineed
+
+> So essentially my use case is that when I'm going on walks or I have random thoughts around some of my projects and I want to just note them down somewhere that's really easily accessible I don't want to have any kind of friction so I am working on my laptop locally so what I want to do is when I'm out with my phone I just want to send a voice message and then have this voice message be converted to some kind of notes so I envision to be able to select a project or create a project and then this will be just some kind of folder structure in my file system on my laptop and when I send a message to the telegram bot and I will say for example swash projects I get a list of projects and then I say some kind of I tack project 0 3 for example something like that and then I just send voice messages and each of the consecutive voice messages is automatically appended to this project and that's it then I expect my laptop to get those voice messages convert them to text and then my notes in some kind of folder and file depending on the project and that's it
+
+> /Users/yabo/Documents/Code/phone-to-laptop By default I want this part to be the default one, not my user level. The select here, I imagine that I will be able to name the project and the project will have an ID and I can just say pick and some ID. The rest of it is kind of okay, it would be good to have timestamps in the notes so whenever I send a message to timestamp it. I just want the messages nicely converted to text, no need for bullet points, just a row text, sentences, paragraphs, yeah, a paragraph is fine. And here, once I select a project it should stay active for multiple messages, session lasts on QIP another. The default project will be just, yeah, I would like to have a default project just some kind of note. No, actually I don't want a default project, I want to be forced to pick a project each time, maybe I'll create one and use it as default one, but I want to have an error if I haven't picked a project. The English will be, yeah, the language will be English. I will walk out transcription using super whisper if possible. Transcription is for accuracy, right, because I don't care how long it takes, I'll be away on the phone so even if it takes like 5 minutes, 10 minutes to just transcribe it, it doesn't matter. So my question, yeah, I want a confirmation, yeah, I want this to be quite interactive, let's say, when I do something I should be able to see that this has been registered, if something has failed and something like that. So, that's about the transcription, can you explain how this would work, who will do the heavy lifting, my laptop or the phone or how does it work?
+
+> /Users/yabo/Documents/Code/phone-to-laptop By default I want this part to be the default one, not my user level. The select here, I imagine that I will be able to name the project and the project will have an ID and I can just say pick and some ID. The rest of it is kind of okay, it would be good to have timestamps in the notes so whenever I send a message to timestamp it. I just want the messages nicely converted to text, no need for bullet points, just a row text, sentences, paragraphs, yeah, a paragraph is fine. And here, once I select a project it should stay active for multiple messages, session lasts on QIP another. The default project will be just, yeah, I would like to have a default project just some kind of note. No, actually I don't want a default project, I want to be forced to pick a project each time, maybe I'll create one and use it as default one, but I want to have an error if I haven't picked a project. The English will be, yeah, the language will be English. I will walk out transcription using super whisper if possible. Transcription is for accuracy, right, because I don't care how long it takes, I'll be away on the phone so even if it takes like 5 minutes, 10 minutes to just transcribe it, it doesn't matter. So my question, yeah, I want a confirmation, yeah, I want this to be quite interactive, let's say, when I do something I should be able to see that this has been registered, if something has failed and something like that. So, that's about the transcription, can you explain how this would work, who will do the heavy lifting, my laptop or the phone or how does it work?
+
+> Yes, first write down the plan to docs/plan.md for the implementation
+
+> One thing I didn't touch is that there's a possibility my laptop will not be on all of the time. So I want whenever this bot runs like the Python bot, it should check the telegram for any messages that it hasn't processed and then process them all at once. Then I expect the bot to respond with something like "optop is currently unavailable, added to queue will process when available" or something like that.
+
+> Alright, let's do it
+
+> added the token, let's test it
+
+> donre
+
+> The transcription doesn't work well, it's in different language and generally garbage letters
+
+> it worked now, are there better models that will output better matching words?
+
+> go with large
+
+> can the bot also output word count, not char count
+
+> also the messages should be clearer , they should specify the the project in quotes, and for example 'Added to project "test" (23 words)'
+
+> Can whisper word with Bulgarian as well?
+
+> I'd rather have an option in the bot to select the language and have it to english by default
+
+>  add this en bg thing in the start message, also is it possible to see the start message every time I open the chat?
+
+> can I have any kind of message on open of chat?
+
+> make the status contain how much messages are sent to the current project and the word count in it
+
+> I don't need /help cmd if Ihave this menu
+
+> Is it possible to use the menu to select the language and the project? currently the menu sends a message how to type the language, but can Iadd some kind of buttons and just select?
+
+> is it downloading the large model currently?
+
+> Is it possible to translate the bulgarian to english automatically and keep both versions?
+
+> okay, it works great! I want to test now the offline queue, do I just stop my laptop and send a few voice messages and then open it?
+
+> GO
+
+> I want ito see logs when it deals with messages from queue, something that it founds n messages in queue and starts processing them and then proceessd message from queue or soemthing like that, when processing messages from queue, use auto for the language
+
+> When I select projects Iwant the list to act like "Recent", the newly created on top, also I want to be able to delete a project
+
+> add a confirmation on delete
+
+> can you make the project button to take 80% of the row and the thrash icon button to take 20?
+
+> New project functionality broke, it always creates new project with id 2
+
+> for the button and delete button, can't you add whitespace to the project name like padding to make the button take more space or they'll still take 50%each?
+
+> I don't need a pick command if I have the list projects and I can click to pick
+
+> delete everything redundant, Iam the only user and we're still developing this
+
+> hey, I've done some implementations, check it, I want to now parse the whole bot, ultrathink of a better structure and code separation and reimplement it in a simple manner, make it follow SOLID principles, I want to be able to plug in and out commands without updating the rest of the code
+
+> run it, let me test it
+
+> /projects doesn't work
+
+> alright, stop it, let me test the offline queue
+
+> go
+
+> there was no message about the queue finding messages, also to the success messagea add to the end "... (n words) - <first 7 words of the message>
+
+> maybe add newline and put the message in quotes, somehow format this better maybe add Message: "<preview>" or something? what's the best practice for UI/UXin this?
+
+> Ok, now instead of deleting project I want to archive them, essentially have archive folder and just prove the project there, I just want to not delete the text, I don't care about duplicate IDs or names, maybe just add the archive datetime timestamp at the end of the folder name to differentiate them
+

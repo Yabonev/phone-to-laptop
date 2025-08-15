@@ -1,0 +1,20 @@
+[project]
+name = "phone-to-laptop"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "openai-whisper>=20250625",
+    "pydantic>=2.11.7",
+    "python-dotenv>=1.1.1",
+    "python-telegram-bot>=22.3",
+    "rich>=14.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+    "pytest-cov>=6.2.1",
+]

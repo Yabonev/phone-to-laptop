@@ -10,6 +10,8 @@ import os
 from dotenv import load_dotenv
 from rich.logging import RichHandler
 
+# Import core
+from src.bot.app import VoiceNotesBot
 from src.bot.commands.language import LanguageCommand
 from src.bot.commands.new_project import NewProjectCommand
 from src.bot.commands.projects import ProjectsCommand
@@ -20,9 +22,6 @@ from src.bot.commands.status import StatusCommand
 from src.bot.handlers.text import TextMessageHandler
 from src.bot.handlers.voice import VoiceMessageHandler
 
-# Import core
-from src.bot.app import VoiceNotesBot
-
 # Load environment variables
 load_dotenv()
 
@@ -31,7 +30,10 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(message)s",
     datefmt="[%X]",
-    handlers=[RichHandler(rich_tracebacks=True), logging.FileHandler("runtime/logs/bot.log", mode="a")],
+    handlers=[
+        RichHandler(rich_tracebacks=True),
+        logging.FileHandler("runtime/logs/bot.log", mode="a"),
+    ],
 )
 
 

@@ -1,0 +1,16 @@
+> /analyze-interaction 
+
+> /analyze-interaction I just used the python test agent, which you must find and read the system prompt for in the user directory for agents for claude code, during its execution the subagents made a few mistakes which I want to learn how to deal with and not have happen again. First it did well on finding that there are mock tests that bring 0 value. But in the second execution instead updating those tests, it created a new file, essentially test_commands.py (old file with mocks) and it created test_commands_real.py with the new code, this is repetitive behaviour with claude models, they create new files instead of editing existing ones, or deleting and rewriting them, it also added strange comments about the context which should not exist, it should just write the tests and write what those tests do if needed, instead it adds comments to new code like "this is the real test with real services as opposed to the mock services" or adds comments to the old code like "this code mocks the tests should be used sparirngly" instead of deleting it and so on. Here's the full chat history 8244705971_04772a04-3750-4351-9415-cfd34a232cad.log (in the .claude) folder in this project 
+
+> Did you read the system prompt for the agent?
+
+> I want you to update the system prompt instead with these instructions about file management, maybe you can rewrite it in the xml style
+
+> /analyze-interaction I ran the tests again and it didn't find out meaningless tests initially, check the logs again 8244702952_3e2a0bb3-5348-463b-bea9-f448397ab0d4.log and update the system prompt for the agent again
+
+> Read as much as you can from the log file to understand the whole context, see my messages, see it's messages, use timestamps to find my messages, give different example, Idon't want it biased towards this example
+
+> also make it so it just either analyses tests or updated,adds or deletes them. Idon't want readme files, markdown files or such
+
+> Again, you're missing the point, this is a generic python test writing and analysing agent, the system prompt now is completely biased to the use case we're discussing because you're writing literally examples of it. DO NOT do that. This agent should be generic, not specific for this repo.
+

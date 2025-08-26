@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      target: development
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - WHISPER_MODEL=${WHISPER_MODEL:-tiny}
+      - PROJECTS_DIR=/app/projects
+      - AUDIO_DIR=/app/audio
+      - LOGS_DIR=/app/logs
+    volumes:
+      # Mount source code for development
+      - .:/app
+      # Persist data
+      - ./projects:/app/projects
+      - ./logs:/app/logs
+      - ./audio:/app/audio
+      - ./state.json:/app/state.json
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Production service
+  bot-production:
+    image: ghcr.io/yabonev/phone-to-laptop:latest
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - WHISPER_MODEL=${WHISPER_MODEL:-large}
+      - PROJECTS_DIR=/app/projects
+      - AUDIO_DIR=/app/audio
+      - LOGS_DIR=/app/logs
+    volumes:
+      # Only mount data directories
+      - bot_projects:/app/projects
+      - bot_logs:/app/logs
+      - bot_state:/app/state
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    profiles:
+      - production
+
+volumes:
+  bot_projects:
+  bot_logs:
+  bot_state:

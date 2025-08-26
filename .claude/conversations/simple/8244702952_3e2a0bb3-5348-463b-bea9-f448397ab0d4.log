@@ -1,4 +1,0 @@
-> @agent-python-test-auditor Check the tests in this repository and evaluate them based on your core principles, give me an analysis and overview, are they good, are they bad, what's good, what's bad, how can we make them better, be extreemly detailed. 
-
-> Run it again and now make it find any tests that do not make sense or should be removed, have it create it's own plan of actions, most important goals to check for, etc. The end result should be real tests, based on the real usage of the code, not writing hundreds of tests, or mocking hundreds of things, each test should be based on the real usage of the code and possible edge cases for it
-

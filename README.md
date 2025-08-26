@@ -1,7 +1,6 @@
 # 🎤 Phone to Laptop - Telegram Voice Transcription Bot
 
 [![CI Pipeline](https://github.com/Yabonev/phone-to-laptop/actions/workflows/ci.yml/badge.svg)](https://github.com/Yabonev/phone-to-laptop/actions/workflows/ci.yml)
-[![Docker Build](https://github.com/Yabonev/phone-to-laptop/actions/workflows/deploy.yml/badge.svg)](https://github.com/Yabonev/phone-to-laptop/actions/workflows/deploy.yml)
 
 A Telegram bot that automatically transcribes voice messages and text messages from your phone to your laptop, organizing them into structured markdown projects. Built with clean architecture following SOLID principles.
 
@@ -62,22 +61,7 @@ A Telegram bot that automatically transcribes voice messages and text messages f
    uv run python main.py
    ```
 
-### Docker Setup (Recommended)
 
-1. **Development**
-   ```bash
-   # Copy environment file
-   cp .env.example .env
-   
-   # Start development container
-   docker-compose up bot
-   ```
-
-2. **Production**
-   ```bash
-   # Use production profile
-   docker-compose --profile production up bot-production
-   ```
 
 ## 📱 Usage
 
@@ -185,11 +169,7 @@ class MyCommand(Command):
 - **Bandit** - Security scanning
 - **Pre-commit hooks** available
 
-### Deployment
-- **Docker multi-stage builds**
-- **GitHub Container Registry**
-- **Automated releases**
-- **Production environment support**
+
 
 ### Branch Protection
 - ✅ All CI checks must pass
@@ -237,28 +217,14 @@ uv run pytest --cov=src --cov-report=html
 open htmlcov/index.html
 ```
 
-## 📦 Deployment Options
+## 🚀 Running the Bot
 
-### 1. Local Development
 ```bash
+# Start the bot locally
 uv run python main.py
 ```
 
-### 2. Docker Development
-```bash
-docker-compose up bot
-```
-
-### 3. Docker Production
-```bash
-docker-compose --profile production up bot-production
-```
-
-### 4. Container Registry
-```bash
-docker pull ghcr.io/yabonev/phone-to-laptop:latest
-docker run -d --env-file .env ghcr.io/yabonev/phone-to-laptop:latest
-```
+The bot will start polling for messages. Send `/start` to your bot on Telegram to begin!
 
 ## 🤝 Contributing
 

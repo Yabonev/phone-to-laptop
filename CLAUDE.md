@@ -2,6 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> 📁 Note: Full documentation is in `docs/` folder:
+> - `docs/ARCHITECTURE.md` - System architecture details
+> - `docs/CI_SETUP.md` - CI/CD pipeline setup
+> - `docs/CLAUDE.md` - Full version of this guide
+
 ## Project Overview
 
 A Telegram bot that transcribes voice messages from phone to laptop, organizing them into markdown projects. Built with clean architecture following SOLID principles.

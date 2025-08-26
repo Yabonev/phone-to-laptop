@@ -24,3 +24,6 @@ state.json
 # IDE
 .vscode/
 .idea/
+
+# Claude AI conversations
+.claude/

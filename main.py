@@ -3,22 +3,25 @@
 Voice Notes Bot - Clean Architecture Implementation
 Following SOLID principles for maintainable, extensible code
 """
-import os
+
 import logging
-from pathlib import Path
+import os
+
 from dotenv import load_dotenv
 from rich.logging import RichHandler
 
-# Import core
-from src.core.bot import VoiceNotesBot
+from src.commands.language import LanguageCommand
+from src.commands.new_project import NewProjectCommand
+from src.commands.projects import ProjectsCommand
 
 # Import commands - each is a separate, pluggable module
 from src.commands.start import StartCommand
-from src.commands.projects import ProjectsCommand
-from src.commands.new_project import NewProjectCommand
 from src.commands.status import StatusCommand
-from src.commands.language import LanguageCommand
+from src.commands.text import TextMessageHandler
 from src.commands.voice import VoiceMessageHandler
+
+# Import core
+from src.core.bot import VoiceNotesBot
 
 # Load environment variables
 load_dotenv()
@@ -28,22 +31,19 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(message)s",
     datefmt="[%X]",
-    handlers=[
-        RichHandler(rich_tracebacks=True),
-        logging.FileHandler("logs/bot.log", mode='a')
-    ]
+    handlers=[RichHandler(rich_tracebacks=True), logging.FileHandler("logs/bot.log", mode="a")],
 )
 
 
 def load_config():
     """Load configuration from environment"""
     return {
-        'telegram_token': os.getenv('TELEGRAM_TOKEN'),
-        'whisper_model': os.getenv('WHISPER_MODEL', 'large'),
-        'projects_dir': os.getenv('PROJECTS_DIR', './projects'),
-        'audio_dir': os.getenv('AUDIO_DIR', './audio'),
-        'logs_dir': os.getenv('LOGS_DIR', './logs'),
-        'state_file': 'state.json'
+        "telegram_token": os.getenv("TELEGRAM_TOKEN"),
+        "whisper_model": os.getenv("WHISPER_MODEL", "large"),
+        "projects_dir": os.getenv("PROJECTS_DIR", "./projects"),
+        "audio_dir": os.getenv("AUDIO_DIR", "./audio"),
+        "logs_dir": os.getenv("LOGS_DIR", "./logs"),
+        "state_file": "state.json",
     }
 
 
@@ -57,10 +57,10 @@ def main():
     """
     # Load configuration
     config = load_config()
-    
+
     # Create bot instance
     bot = VoiceNotesBot(config)
-    
+
     # Register commands - OPEN/CLOSED PRINCIPLE
     # You can add/remove commands here without modifying any other code
     bot.register_commands(
@@ -70,12 +70,13 @@ def main():
         StatusCommand,
         LanguageCommand,
         VoiceMessageHandler,
+        TextMessageHandler,
     )
-    
+
     # Example: Adding a custom command is as simple as:
     # from src.commands.custom import CustomCommand
     # bot.register_command(CustomCommand)
-    
+
     # Run the bot
     bot.run()
 

@@ -19,6 +19,7 @@ from src.commands.new_project import NewProjectCommand
 from src.commands.status import StatusCommand
 from src.commands.language import LanguageCommand
 from src.commands.voice import VoiceMessageHandler
+from src.commands.text import TextMessageHandler
 
 # Load environment variables
 load_dotenv()
@@ -70,6 +71,7 @@ def main():
         StatusCommand,
         LanguageCommand,
         VoiceMessageHandler,
+        TextMessageHandler,
     )
     
     # Example: Adding a custom command is as simple as:

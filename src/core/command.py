@@ -71,3 +71,12 @@ class VoiceCommand(Command):
     async def handle_voice(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Handle voice message"""
         pass
+
+
+class TextCommand(Command):
+    """Base class for commands that handle text messages"""
+    
+    @abstractmethod
+    async def handle_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle text message"""
+        pass

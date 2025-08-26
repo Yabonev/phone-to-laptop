@@ -91,6 +91,10 @@ class VoiceNotesBot:
                                     'args': parts[1].split() if len(parts) > 1 else []
                                 })()
                                 await command.execute(update, context)
+                        else:
+                            # Handle regular text messages
+                            if self.registry.text_handler:
+                                await self.registry.text_handler.handle_text(update, None)
                 
                 self.logger.info(f"✅ Processed {len(updates)} queued messages")
             else:

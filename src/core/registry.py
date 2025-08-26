@@ -4,7 +4,7 @@ Command registry for dynamic command management
 from typing import Dict, List, Type, Any
 from telegram import BotCommand
 from telegram.ext import CommandHandler, CallbackQueryHandler, MessageHandler, filters
-from .command import Command, CallbackCommand, VoiceCommand
+from .command import Command, CallbackCommand, VoiceCommand, TextCommand
 
 
 class CommandRegistry:
@@ -14,6 +14,7 @@ class CommandRegistry:
         self.commands: Dict[str, Command] = {}
         self.callback_handlers: Dict[str, CallbackCommand] = {}
         self.voice_handler: VoiceCommand = None
+        self.text_handler: TextCommand = None
     
     def register(self, command: Command) -> None:
         """Register a new command"""
@@ -27,6 +28,10 @@ class CommandRegistry:
         # Register as voice handler if it's a voice command
         if isinstance(command, VoiceCommand):
             self.voice_handler = command
+        
+        # Register as text handler if it's a text command
+        if isinstance(command, TextCommand):
+            self.text_handler = command
     
     def unregister(self, command_name: str) -> None:
         """Remove a command from registry"""
@@ -41,6 +46,10 @@ class CommandRegistry:
             # Remove voice handler
             if isinstance(command, VoiceCommand) and self.voice_handler == command:
                 self.voice_handler = None
+            
+            # Remove text handler
+            if isinstance(command, TextCommand) and self.text_handler == command:
+                self.text_handler = None
             
             del self.commands[command_name]
     
@@ -84,6 +93,12 @@ class CommandRegistry:
         if self.voice_handler:
             handlers.append(
                 MessageHandler(filters.VOICE, self.voice_handler.handle_voice)
+            )
+        
+        # Add text handler (exclude commands to avoid conflicts)
+        if self.text_handler:
+            handlers.append(
+                MessageHandler(filters.TEXT & ~filters.COMMAND, self.text_handler.handle_text)
             )
         
         return handlers

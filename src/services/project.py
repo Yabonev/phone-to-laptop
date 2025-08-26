@@ -62,7 +62,7 @@ class ProjectService:
         return None
     
     def add_note(self, project_id: str, text: str, translation: Optional[str] = None) -> bool:
-        """Add a note to project"""
+        """Add a voice note to project"""
         project_dir = self.get_project_dir(project_id)
         if not project_dir:
             return False
@@ -72,9 +72,23 @@ class ProjectService:
         
         with open(notes_file, 'a') as f:
             if translation:
-                f.write(f"## {timestamp}\n\n**Bulgarian:** {text}\n\n**English:** {translation}\n\n")
+                f.write(f"## {timestamp} [VOICE]\n\n**Bulgarian:** {text}\n\n**English:** {translation}\n\n")
             else:
-                f.write(f"## {timestamp}\n\n{text}\n\n")
+                f.write(f"## {timestamp} [VOICE]\n\n{text}\n\n")
+        
+        return True
+    
+    def add_text_note(self, project_id: str, text: str) -> bool:
+        """Add a text note to project"""
+        project_dir = self.get_project_dir(project_id)
+        if not project_dir:
+            return False
+        
+        notes_file = project_dir / "notes.md"
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+        
+        with open(notes_file, 'a') as f:
+            f.write(f"## {timestamp} [TEXT]\n\n{text}\n\n")
         
         return True
     

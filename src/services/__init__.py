@@ -1,1 +1,0 @@
-# Services layer - business logic separated from bot infrastructure

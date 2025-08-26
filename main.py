@@ -10,18 +10,18 @@ import os
 from dotenv import load_dotenv
 from rich.logging import RichHandler
 
-from src.commands.language import LanguageCommand
-from src.commands.new_project import NewProjectCommand
-from src.commands.projects import ProjectsCommand
+from src.bot.commands.language import LanguageCommand
+from src.bot.commands.new_project import NewProjectCommand
+from src.bot.commands.projects import ProjectsCommand
 
 # Import commands - each is a separate, pluggable module
-from src.commands.start import StartCommand
-from src.commands.status import StatusCommand
-from src.commands.text import TextMessageHandler
-from src.commands.voice import VoiceMessageHandler
+from src.bot.commands.start import StartCommand
+from src.bot.commands.status import StatusCommand
+from src.bot.handlers.text import TextMessageHandler
+from src.bot.handlers.voice import VoiceMessageHandler
 
 # Import core
-from src.core.bot import VoiceNotesBot
+from src.bot.app import VoiceNotesBot
 
 # Load environment variables
 load_dotenv()
@@ -31,7 +31,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(message)s",
     datefmt="[%X]",
-    handlers=[RichHandler(rich_tracebacks=True), logging.FileHandler("logs/bot.log", mode="a")],
+    handlers=[RichHandler(rich_tracebacks=True), logging.FileHandler("runtime/logs/bot.log", mode="a")],
 )
 
 
@@ -40,10 +40,10 @@ def load_config():
     return {
         "telegram_token": os.getenv("TELEGRAM_TOKEN"),
         "whisper_model": os.getenv("WHISPER_MODEL", "large"),
-        "projects_dir": os.getenv("PROJECTS_DIR", "./projects"),
-        "audio_dir": os.getenv("AUDIO_DIR", "./audio"),
-        "logs_dir": os.getenv("LOGS_DIR", "./logs"),
-        "state_file": "state.json",
+        "projects_dir": os.getenv("PROJECTS_DIR", "./runtime/data/projects"),
+        "audio_dir": os.getenv("AUDIO_DIR", "./runtime/audio"),
+        "logs_dir": os.getenv("LOGS_DIR", "./runtime/logs"),
+        "state_file": "./runtime/data/state.json",
     }
 
 

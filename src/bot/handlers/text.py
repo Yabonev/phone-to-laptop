@@ -5,7 +5,7 @@ Text command - Handle text messages
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from src.core.command import TextCommand
+from src.bot.commands.base import TextCommand
 
 
 class TextMessageHandler(TextCommand):

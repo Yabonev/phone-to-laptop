@@ -5,7 +5,7 @@ Projects command - List and manage projects
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ContextTypes
 
-from src.core.command import CallbackCommand
+from src.bot.commands.base import CallbackCommand
 
 
 class ProjectsCommand(CallbackCommand):

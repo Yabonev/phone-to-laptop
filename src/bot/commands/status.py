@@ -5,7 +5,7 @@ Status command - Show current project status
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from src.core.command import Command
+from src.bot.commands.base import Command
 
 
 class StatusCommand(Command):

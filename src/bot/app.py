@@ -8,8 +8,8 @@ from pathlib import Path
 from telegram import Update
 from telegram.ext import Application
 
-from ..services.container import ServiceContainer
-from .registry import CommandRegistry
+from src.core.services.container import ServiceContainer
+from src.bot.registry import CommandRegistry
 
 
 class VoiceNotesBot:

@@ -5,7 +5,7 @@ Voice command - Handle voice messages
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from src.core.command import VoiceCommand
+from src.bot.commands.base import VoiceCommand
 
 
 class VoiceMessageHandler(VoiceCommand):

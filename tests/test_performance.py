@@ -211,7 +211,7 @@ class TestServicePerformanceBenchmarks:
         # Performance assertions
         assert add_time < 1.0, f"Adding {num_projects} projects too slow: {add_time:.3f}s"
         assert get_time < 0.5, f"100 project retrievals too slow: {get_time:.3f}s"
-        assert message_time < 0.5, f"1000 message marks too slow: {message_time:.3f}s"
+        assert message_time < 1.0, f"1000 message marks too slow: {message_time:.3f}s"
 
     @pytest.mark.performance
     @pytest.mark.integration

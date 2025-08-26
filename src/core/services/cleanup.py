@@ -3,7 +3,6 @@
 import logging
 import os
 from pathlib import Path
-from typing import Optional
 
 
 class CleanupService:
@@ -15,7 +14,7 @@ class CleanupService:
         self.audio_dir = Path(audio_dir)
         self.audio_dir.mkdir(parents=True, exist_ok=True)
 
-    def cleanup_audio_file(self, file_path: Optional[Path]) -> None:
+    def cleanup_audio_file(self, file_path: Path | None) -> None:
         """Clean up a temporary audio file."""
         if file_path and file_path.exists():
             try:
@@ -27,8 +26,9 @@ class CleanupService:
     def cleanup_old_files(self, max_age_hours: int = 24) -> None:
         """Clean up old temporary files."""
         import time
+
         current_time = time.time()
-        
+
         for file_path in self.audio_dir.glob("*.ogg"):
             file_age_hours = (current_time - file_path.stat().st_mtime) / 3600
             if file_age_hours > max_age_hours:

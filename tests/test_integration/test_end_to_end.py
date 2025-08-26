@@ -14,7 +14,7 @@ import pytest
 
 from src.bot.commands.new_project import NewProjectCommand
 from src.bot.commands.status import StatusCommand
-from src.bot.commands.voice import VoiceMessageHandler
+from src.bot.handlers.voice import VoiceMessageHandler
 from src.core.services.container import ServiceContainer
 
 

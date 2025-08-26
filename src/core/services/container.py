@@ -19,11 +19,13 @@ class ServiceContainer:
 
         # Initialize services - convert paths to Path objects
         self.state_service = StateService(Path(config.get("state_file", "runtime/data/state.json")))
-        self.project_service = ProjectService(Path(config.get("projects_dir", "./runtime/data/projects")))
+        self.project_service = ProjectService(
+            Path(config.get("projects_dir", "./runtime/data/projects"))
+        )
         self.transcription_service = TranscriptionService(config.get("whisper_model", "large"))
         self.cleanup_service = CleanupService(
             audio_dir=Path(config.get("audio_dir", "./runtime/audio")),
-            logs_dir=Path(config.get("logs_dir", "./runtime/logs"))
+            logs_dir=Path(config.get("logs_dir", "./runtime/logs")),
         )
 
         self.logger.info("Service container initialized")

@@ -16,6 +16,7 @@ class ServiceContainer:
     def __init__(self, config: dict[str, Any]):
         """Initialize all services with configuration."""
         self.logger = logging.getLogger(__name__)
+        self.config = config  # Store config for access
 
         # Initialize services - convert paths to Path objects
         self.state_service = StateService(Path(config.get("state_file", "runtime/data/state.json")))
@@ -37,10 +38,18 @@ class ServiceContainer:
             "project": self.project_service,
             "transcription": self.transcription_service,
             "cleanup": self.cleanup_service,
+            "logger": logging.getLogger("bot"),  # Provide a logger instance
+            "config": self.config,  # Provide access to config
         }
 
     def get(self, service_name: str) -> Any:
         """Get a specific service by name."""
+        # First check if it's a custom registered service
+        custom_service = getattr(self, f"{service_name}_service", None)
+        if custom_service is not None:
+            return custom_service
+        
+        # Otherwise check default services
         services = self.get_all()
         return services.get(service_name)
 

@@ -19,7 +19,6 @@ pre-commit run --all-files
 uv run ruff format --check .    # Check formatting
 uv run ruff check .              # Lint code
 uv run pytest                    # Run tests
-uv run python scripts/validate_bot.py  # Validate structure
 ```
 
 ### 3. Fix Issues Automatically

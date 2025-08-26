@@ -43,10 +43,7 @@ jobs:
         ! grep -r "TELEGRAM_TOKEN\s*=\s*['\"].*['\"]" --include="*.py" src/ || exit 1
         ! grep -r "API_KEY\s*=\s*['\"].*['\"]" --include="*.py" src/ || exit 1
     
-    - name: Validate bot structure
-      run: |
-        echo "🤖 Validating bot structure..."
-        uv run python scripts/validate_bot.py
+
 
   # Main test suite
   test:

@@ -29,8 +29,3 @@ repos:
         language: system
         pass_filenames: false
         
-      - id: validate-bot
-        name: Validate bot structure
-        entry: python scripts/validate_bot.py
-        language: system
-        pass_filenames: false

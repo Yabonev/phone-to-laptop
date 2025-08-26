@@ -4,7 +4,7 @@ import os
 from datetime import datetime, timedelta
 from unittest.mock import Mock
 
-from src.services.cleanup import CleanupService
+from src.core.services.cleanup import CleanupService
 from src.core.services.container import ServiceContainer
 from src.infrastructure.storage.file_project import ProjectService
 from src.infrastructure.storage.json_state import StateService

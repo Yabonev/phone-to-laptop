@@ -177,7 +177,7 @@ class VoiceNotesBot:
 
         # Generate project ID (3-digit) - find the highest ID and add 1
         if self.state.projects:
-            max_id = max(int(pid) for pid in self.state.projects.keys())
+            max_id = max(int(pid) for pid in self.state.projects)
             project_id = str(max_id + 1).zfill(3)
         else:
             project_id = "001"

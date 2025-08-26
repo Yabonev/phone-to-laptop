@@ -46,6 +46,11 @@ ignore = [
     "E501",  # line too long (handled by formatter)
     "B008",  # do not perform function calls in argument defaults
     "ARG002", # unused method argument
+    "ARG001", # unused function argument (test mocks)
+    "B017",  # assert raises(Exception) is sometimes needed for broad error handling
+    "B023",  # function definition does not bind loop variable (test fixtures)
+    "SIM105", # contextlib.suppress - sometimes try/except is clearer
+    "SIM115", # use context manager - not always applicable
 ]
 
 [tool.ruff.format]

@@ -217,7 +217,7 @@ class TestLanguageCommandReal:
         query.edit_message_text.assert_called_once()
 
         # Verify state persistence by creating new service container
-        state_file = services["config"]["state_file"]
+        services["config"]["state_file"]
         new_container = ServiceContainer(services["config"])
         assert new_container.get("state").get_language() == "bg"
 

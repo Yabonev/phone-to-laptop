@@ -164,7 +164,7 @@ class TestConcurrentAccess:
         # Should have some projects (exact count may vary due to race conditions)
         assert len(projects) > 0
         # Each project should have a valid name
-        for project_id, project_name in projects.items():
+        for _project_id, project_name in projects.items():
             assert project_name.startswith("Thread Project")
 
     def test_concurrent_voice_processing_simulation(self, temp_dir):
@@ -374,5 +374,5 @@ class TestProjectCorruption:
         assert not success
 
         # Should not create the project directory automatically
-        missing_dir = projects_dir / "project-999-*"
+        projects_dir / "project-999-*"
         assert not any(projects_dir.glob("project-999-*"))

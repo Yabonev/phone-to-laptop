@@ -190,7 +190,7 @@ class TestServicePerformanceBenchmarks:
         # Time project retrievals
         start_time = time.time()
         for _ in range(100):
-            projects = service.get_projects()
+            service.get_projects()
         get_time = time.time() - start_time
 
         # Time message processing tracking
@@ -273,11 +273,11 @@ class TestServicePerformanceBenchmarks:
         num_initializations = 10
         times = []
 
-        for i in range(num_initializations):
+        for _i in range(num_initializations):
             start_time = time.time()
             container = ServiceContainer(test_config)
             # Get all services to ensure they're initialized
-            services = container.get_all()
+            container.get_all()
             initialization_time = time.time() - start_time
             times.append(initialization_time)
 

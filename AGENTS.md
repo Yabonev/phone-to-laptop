@@ -10,13 +10,15 @@ uv run ruff format src/        # Format code
 uv run mypy src/               # Type checking
 ```
 
+## Project Structure
+- `src/bot/` - Telegram bot commands and handlers
+- `src/core/` - Business logic and domain models  
+- `src/infrastructure/` - External dependencies (storage, transcription)
+- `tests/test_*` - Tests organized by layer
+
 ## Code Style
 - **Python 3.11+**, line length 100, double quotes for strings
-- **Imports**: Group stdlib/third-party/local, use `from typing import` for types
-- **SOLID**: Each class has single responsibility; add commands in main.py only
-- **Commands**: Extend `Command`/`CallbackCommand`/`VoiceCommand` from `src.core.command`
-- **Services**: Injected via constructor, access as `self.state`, `self.project_service`, etc.
-- **Async/await**: All bot handlers and command methods must be async
-- **Error handling**: Let exceptions bubble up, bot handles gracefully
-- **Testing**: Fixtures in conftest.py, mark tests with @pytest.mark.unit/integration
-- **No hardcoded secrets**: Use .env file, check with pre-commit hooks
+- **Commands**: Extend from `src.bot.commands.base`
+- **Services**: Injected via constructor
+- **Async/await**: All bot handlers must be async
+- **Testing**: Mark with @pytest.mark.unit/integration

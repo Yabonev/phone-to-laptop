@@ -5,7 +5,7 @@ Command registry for dynamic command management
 from telegram import BotCommand
 from telegram.ext import CallbackQueryHandler, CommandHandler, MessageHandler, filters
 
-from .command import CallbackCommand, Command, TextCommand, VoiceCommand
+from src.bot.commands.base import CallbackCommand, Command, TextCommand, VoiceCommand
 
 
 class CommandRegistry:
@@ -14,8 +14,8 @@ class CommandRegistry:
     def __init__(self):
         self.commands: dict[str, Command] = {}
         self.callback_handlers: dict[str, CallbackCommand] = {}
-        self.voice_handler: VoiceCommand = None
-        self.text_handler: TextCommand = None
+        self.voice_handler: VoiceCommand | None = None
+        self.text_handler: TextCommand | None = None
 
     def register(self, command: Command) -> None:
         """Register a new command"""

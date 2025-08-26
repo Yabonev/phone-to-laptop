@@ -5,9 +5,9 @@ from datetime import datetime, timedelta
 from unittest.mock import Mock
 
 from src.services.cleanup import CleanupService
-from src.services.container import ServiceContainer
-from src.services.project import ProjectService
-from src.services.state import StateService
+from src.core.services.container import ServiceContainer
+from src.infrastructure.storage.file_project import ProjectService
+from src.infrastructure.storage.json_state import StateService
 
 
 class TestServiceContainer:

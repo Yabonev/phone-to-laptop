@@ -9,8 +9,8 @@ from unittest.mock import AsyncMock, Mock
 
 import pytest
 
-from src.services.container import ServiceContainer
-from src.services.transcription import TranscriptionService
+from src.core.services.container import ServiceContainer
+from src.infrastructure.transcription.whisper_adapter import TranscriptionService
 from tests.audio_helpers import AudioGenerator, create_test_audio_files
 
 

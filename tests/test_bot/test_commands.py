@@ -10,12 +10,12 @@ from unittest.mock import AsyncMock, Mock
 
 import pytest
 
-from src.commands.language import LanguageCommand
-from src.commands.new_project import NewProjectCommand
-from src.commands.projects import ProjectsCommand
-from src.commands.status import StatusCommand
-from src.commands.voice import VoiceMessageHandler
-from src.services.container import ServiceContainer
+from src.bot.commands.language import LanguageCommand
+from src.bot.commands.new_project import NewProjectCommand
+from src.bot.commands.projects import ProjectsCommand
+from src.bot.commands.status import StatusCommand
+from src.bot.handlers.voice import VoiceMessageHandler
+from src.core.services.container import ServiceContainer
 
 
 class TestStatusCommandReal:

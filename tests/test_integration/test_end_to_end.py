@@ -12,10 +12,10 @@ from unittest.mock import AsyncMock, Mock
 
 import pytest
 
-from src.commands.new_project import NewProjectCommand
-from src.commands.status import StatusCommand
-from src.commands.voice import VoiceMessageHandler
-from src.services.container import ServiceContainer
+from src.bot.commands.new_project import NewProjectCommand
+from src.bot.commands.status import StatusCommand
+from src.bot.commands.voice import VoiceMessageHandler
+from src.core.services.container import ServiceContainer
 
 
 class TestEndToEndVoiceProcessing:
@@ -290,7 +290,7 @@ class TestEndToEndWorkflowValidation:
         assert projects[project_id] == "My First Project"
 
         # Step 2: Select the project (simulate user clicking button)
-        from src.commands.projects import ProjectsCommand
+        from src.bot.commands.projects import ProjectsCommand
 
         projects_cmd = ProjectsCommand(services)
 

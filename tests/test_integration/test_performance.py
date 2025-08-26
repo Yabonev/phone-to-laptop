@@ -11,8 +11,8 @@ import time
 
 import pytest
 
-from src.services.container import ServiceContainer
-from src.services.transcription import TranscriptionService
+from src.core.services.container import ServiceContainer
+from src.infrastructure.transcription.whisper_adapter import TranscriptionService
 
 
 class TestTranscriptionPerformanceBenchmarks:
@@ -173,7 +173,7 @@ class TestServicePerformanceBenchmarks:
     @pytest.mark.integration
     def test_state_service_performance(self, temp_dir):
         """Benchmark state service operations"""
-        from src.services.state import StateService
+        from src.infrastructure.storage.json_state import StateService
 
         state_file = temp_dir / "perf_state.json"
         service = StateService(state_file)
@@ -217,7 +217,7 @@ class TestServicePerformanceBenchmarks:
     @pytest.mark.integration
     def test_project_service_performance(self, temp_dir):
         """Benchmark project service file operations"""
-        from src.services.project import ProjectService
+        from src.infrastructure.storage.file_project import ProjectService
 
         projects_dir = temp_dir / "projects"
         service = ProjectService(projects_dir)
@@ -339,7 +339,7 @@ class TestMemoryUsageBenchmarks:
 
         import psutil
 
-        from src.services.project import ProjectService
+        from src.infrastructure.storage.file_project import ProjectService
 
         process = psutil.Process(os.getpid())
         baseline_memory = process.memory_info().rss / 1024 / 1024  # MB

@@ -7,10 +7,10 @@ from pathlib import Path
 
 import pytest
 
-from src.core.bot import VoiceNotesBot
-from src.services.project import ProjectService
-from src.services.state import StateService
-from src.services.transcription import TranscriptionService
+from src.bot.app import VoiceNotesBot
+from src.infrastructure.storage.file_project import ProjectService
+from src.infrastructure.storage.json_state import StateService
+from src.infrastructure.transcription.whisper_adapter import TranscriptionService
 
 
 class TestStateCorruption:

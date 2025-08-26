@@ -7,7 +7,7 @@ We use actual Whisper models and generated audio to verify transcription actuall
 
 import pytest
 
-from src.services.transcription import TranscriptionService
+from src.infrastructure.transcription.whisper_adapter import TranscriptionService
 from tests.audio_helpers import TranscriptionTestData
 
 

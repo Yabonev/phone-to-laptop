@@ -1,0 +1,36 @@
+# Simple pre-commit hooks for AI safety
+repos:
+  # Basic file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-json  
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      
+  # Python formatting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.0
+    hooks:
+      - id: ruff-format
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+
+  # Custom checks
+  - repo: local
+    hooks:
+      - id: no-secrets
+        name: Check for secrets
+        entry: bash -c 'if grep -r "TELEGRAM_TOKEN\s*=\s*[\"'\''][^\"'\'']*[\"'\'']" --include="*.py" src/; then echo "Found hardcoded token!"; exit 1; fi'
+        language: system
+        pass_filenames: false
+        
+      - id: validate-bot
+        name: Validate bot structure
+        entry: python scripts/validate_bot.py
+        language: system
+        pass_filenames: false
